@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import keyboard
 
 # Okreslenie, z ktorej kamery chcemy korzystac. Jesli uzytkownik posiada wiecej niz 1 wtedy parametr w VideCapture ustawiamy na 1 lub 2
 cap = cv2.VideoCapture(0)
@@ -81,19 +82,27 @@ while(cap.isOpened()):
             cv2.circle(crop_img, far, 1, [0,0,255], -1)
         #dist = cv2.pointPolygonTest(cnt,far,True)
 
-        # Narysowanie linni dla punktow wypuklosci
+        # Narysowanie linni dla punktow wypuklosciw
         cv2.line(crop_img,start, end, [0,255,0], 2)
 
     # Wyswietlanie rozpoznanego gestu/liczby palcow
     if count_defects == 1:
         cv2.putText(img,"Peace", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
+        #keyboard.press('w')
+        keyboard.press_and_release('k')  
     elif count_defects == 2:
         str = "Katniss Everdeen Salute"
         cv2.putText(img, str, (5, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
+        #keyboard.press('a')
+        keyboard.press_and_release('c')
     elif count_defects == 3:
         cv2.putText(img,"Yankee Salute", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
+        #keyboard.press('s')
+        keyboard.press_and_release('left')
     elif count_defects == 4:
         cv2.putText(img,"Hello", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 2, 2)
+        #keyboard.press('d')
+        keyboard.press_and_release('right')
 
     #
     cv2.imshow('Gesture', img)
